@@ -15,6 +15,8 @@
 
 
 <ol reversed>
+    <li><a href="https://www.instagram.com/p/C5rjJTeufD9/" target="_blank">My 21st Century Blues by RAYE</a></li>
+    <li><a href="https://www.instagram.com/p/C5e50vTOfM9/" target="_blank">In Rainbows by Radiohead</a></li>
     <li><a href="https://www.instagram.com/p/C5L9HTqOX8a/" target="_blank">COWBOY CARTER by Beyoncé</a></li>
     <li><a href="https://www.instagram.com/p/C4td2xlO1Tr/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank">Eternal Sunshine by Ariana Grande</a></li>
     <li><a href="https://www.instagram.com/p/C4in0leOd8t/?next=https%3A%2F%2Fwww.instagram.com%2Fdirect%2Finbox%2F%3F__coig_login%3D1" target="_blank">Heaven by Cleo Sol</a></li>
@@ -252,6 +254,26 @@
 </ol>
 
 <a href="https://www.instagram.com/ayotalksmusic/" >Visit AyoTalksMusic on Instagram</a>
+
+
+<script>
+    function searchAlbums() {
+        var input = document.getElementById('searchInput').value.toLowerCase();
+        var albums = document.getElementById('albumList').getElementsByTagName('a');
+
+        for (var i = 0; i < albums.length; i++) {
+            var album = albums[i].textContent.toLowerCase();
+            if (album.indexOf(input) > -1) {
+                albums[i].style.display = '';
+            } else {
+                albums[i].style.display = 'none';
+            }
+        }
+    }
+
+    // Attach event listener
+    document.getElementById('searchInput').addEventListener('input', searchAlbums);
+</script>
 
 
 
