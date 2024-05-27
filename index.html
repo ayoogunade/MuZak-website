@@ -10,6 +10,39 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			/* Add your custom CSS styles here */
+			#recentAlbumReviews .grid-item {
+				width: calc(25% - 20px);
+				margin: 10px;
+				padding: 20px;
+				background: #fff;
+				border-radius: 8px;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			}
+
+			#recentAlbumReviews .grid-item h3 {
+				margin-bottom: 10px;
+				font-size: 18px;
+			}
+
+			#recentAlbumReviews .grid-item p {
+				font-size: 14px;
+				color: #666;
+			}
+
+			#recentAlbumReviews .grid-item a {
+				display: block;
+				margin-top: 10px;
+				text-decoration: none;
+				color: #007bff;
+				font-weight: bold;
+			}
+
+			#recentAlbumReviews .grid-item a:hover {
+				text-decoration: underline;
+			}
+		</style>
 	</head>
 	<body class="landing is-preload">
 		<div id="page-wrapper">
@@ -84,7 +117,7 @@
 					</ul>
 				</footer>
 
-		</div>
+			</div>
 
 		<!-- Scripts -->
 		<script src="assets/js/jquery.min.js"></script>
@@ -94,9 +127,45 @@
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
-		<script src = "updateAlbumReviews.js"></script>
-
+		<script>
+			// Fetch album data from albumlog.html
+			fetch('albumlog.html')
+				.then(response => response.text())
+				.then(html => {
+					const parser = new DOMParser();
+					const doc = parser.parseFromString(html, 'text/html');
 		
-
+					// Get the album list
+					const albumList = doc.getElementById('albumList');
+					const albums = Array.from(albumList.children);
+		
+					// Convert the albums data to an array
+					const albumData = albums.map(album => {
+						return {
+							name: album.querySelector('h2').innerText,
+							link: album.querySelector('a').getAttribute('href')
+						};
+					});
+		
+					// Sort albums by date (you might need to add a date field to each album)
+					albumData.sort((a, b) => new Date(b.date) - new Date(a.date));
+		
+					// Get the most recent 4 albums
+					const recentAlbums = albumData.slice(0, 4);
+		
+					// Create HTML elements for each recent album
+					const albumGrid = document.getElementById('recentAlbumReviews').querySelector('.row');
+					recentAlbums.forEach(album => {
+						const listItem = document.createElement('div');
+						listItem.classList.add('grid-item'); // Add CSS class for styling
+						listItem.innerHTML = `
+							<h3>${album.name}</h3>
+							<a href="${album.link}" class="button primary">View Album</a>
+						`;
+						albumGrid.appendChild(listItem);
+					});
+				})
+				.catch(error => console.error('Error fetching album data:', error));
+		</script>
 	</body>
 </html>
