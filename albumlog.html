@@ -22,13 +22,31 @@
       max-width: 100%;
       height: auto;
     }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    #searchInput {
+      width: 100%;
+      max-width: 1500px; /* Maximum width for the search bar */
+      padding: 10px; /* Padding inside the search bar */
+      font-size: 18px; /* Font size for the text */
+      border: 1px solid #ccc; /* Border for the search bar */
+      border-radius: 4px; /* Rounded corners */
+    }
   </style>
 </head>
 <body>
-  <h1>Album log</h1>
+  <div class="header">
+    <h1>Album log</h1>
+    <!-- Search bar -->
+    <input type="text" id="searchInput" placeholder="Search for an album..." />
+  </div>
 
-  <!-- Search bar -->
-  <input type="text" id="searchInput" placeholder="Search for an album..." />
 
   <!-- Dynamic grid -->
   <div class="album-grid" id="albumGrid"></div>
