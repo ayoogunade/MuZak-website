@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Album log</title>
+  <title>Album Log</title>
   <style>
     .album-grid {
       display: grid;
@@ -24,15 +24,19 @@
     }
 
     .header {
+      text-align: left;
+      margin-bottom: 10px;
+    }
+
+    .search-container {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      justify-content: left;
       margin-bottom: 20px;
     }
 
     #searchInput {
       width: 100%;
-      max-width: 1500px; /* Maximum width for the search bar */
+      max-width: 2000px; /* Adjusted max-width for better layout */
       padding: 10px; /* Padding inside the search bar */
       font-size: 18px; /* Font size for the text */
       border: 1px solid #ccc; /* Border for the search bar */
@@ -42,11 +46,13 @@
 </head>
 <body>
   <div class="header">
-    <h1>Album log</h1>
-    <!-- Search bar -->
-    <input type="text" id="searchInput" placeholder="Search for an album..." />
+    <h1>Album Log</h1>
   </div>
 
+  <!-- Search bar container -->
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search for an album..." />
+  </div>
 
   <!-- Dynamic grid -->
   <div class="album-grid" id="albumGrid"></div>
